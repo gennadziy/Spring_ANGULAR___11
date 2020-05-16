@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "https://app-gennadziy.herokuapp.com/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/springboot-crud-rest/api/v1")
 public class EmployeeController {
