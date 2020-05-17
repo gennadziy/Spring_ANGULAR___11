@@ -2,6 +2,9 @@ package Spring_ANGULAR.Spring_ANGULAR;
 
 
 import Spring_ANGULAR.Spring_ANGULAR.exception.ResourceNotFoundException;
+import Spring_ANGULAR.Spring_ANGULAR.repository.AutoDao;
+import Spring_ANGULAR.Spring_ANGULAR.repository.EmployeeRepository;
+import Spring_ANGULAR.Spring_ANGULAR.repository.ModeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,12 @@ import java.util.Map;
 public class EmployeeController {
 
 	@Autowired
+	private EmployeeRepository employeeRepository;
+	@Autowired
+	private ModeRepo modeRepo;
+	@Autowired
+	private AutoDao autoDao;
+	@Autowired
 	private PlanetDao planetDao;
 
 
@@ -25,7 +34,7 @@ public class EmployeeController {
 		return planetDao.findAll ();}
 
 	@GetMapping("/planets/{id}")
-	public ResponseEntity<Planets> getPlanetById( @PathVariable(value = "id") int id)
+	public ResponseEntity<Planets> getPlanetById(@PathVariable(value = "id") int id)
 			throws ResourceNotFoundException {
 		Planets planets = planetDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Planet not found for this id :: " + id));
@@ -38,8 +47,8 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/planets/{id}")
-	public ResponseEntity<Planets> updatePlanet( @PathVariable(value = "id") int id,
-                                                 @Valid @RequestBody Planets planetDetails) throws ResourceNotFoundException {
+	public ResponseEntity<Planets> updatePlanet(@PathVariable(value = "id") int id,
+												@Valid @RequestBody Planets planetDetails) throws ResourceNotFoundException {
 		Planets planet = planetDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Planet not found for this id :: " + id));
 		planet.setId(planetDetails.getId());
@@ -67,5 +76,54 @@ public class EmployeeController {
 	}
 
 
+	@GetMapping("/autos")
+	public List<Autoss> getAllAutos() {
+		return autoDao.findAll();
+	}
+	@GetMapping("/modes")
+	public List<Mode> getAllMode() {
+		return modeRepo.findAll();
+	}
+	@GetMapping("/employees")
+	public List<Employee> getAllEmployees() {
+		return employeeRepository.findAll();
+	}
 
+	@GetMapping("/employees/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
+			throws ResourceNotFoundException {
+		Employee employee = employeeRepository.findById(employeeId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+		return ResponseEntity.ok().body(employee);
+	}
+
+	@PostMapping("/employees")
+	public Employee createEmployee(@Valid @RequestBody Employee employee) {
+		return employeeRepository.save(employee);
+	}
+
+	@PutMapping("/employees/{id}")
+	public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
+												   @Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
+		Employee employee = employeeRepository.findById(employeeId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+
+		employee.setEmailId(employeeDetails.getEmailId());
+		employee.setLastName(employeeDetails.getLastName());
+		employee.setFirstName(employeeDetails.getFirstName());
+		final Employee updatedEmployee = employeeRepository.save(employee);
+		return ResponseEntity.ok(updatedEmployee);
+	}
+
+	@DeleteMapping("/employees/{id}")
+	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId)
+			throws ResourceNotFoundException {
+		Employee employee = employeeRepository.findById(employeeId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+
+		employeeRepository.delete(employee);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
 }
