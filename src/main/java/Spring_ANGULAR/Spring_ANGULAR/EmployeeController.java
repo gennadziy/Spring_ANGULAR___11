@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/springboot-crud-rest/api/v1")
 public class EmployeeController {
@@ -27,6 +27,7 @@ public class EmployeeController {
 	@Autowired
 	private AutoDao autoDao;
 	@Autowired(required=true)
+
 	private PlanetDao planetDao;
 
 

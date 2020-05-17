@@ -1,6 +1,7 @@
 package Spring_ANGULAR.Spring_ANGULAR;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /*
@@ -10,5 +11,6 @@ Date: 2020-05-13
 Time: 20:30
 */
 @Repository
+@Component(value = "planets")
 public interface PlanetDao extends JpaRepository<Planets, Integer> {
 }
