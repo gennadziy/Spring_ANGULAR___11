@@ -26,7 +26,7 @@ public class EmployeeController {
 	private ModeRepo modeRepo;
 	@Autowired
 	private AutoDao autoDao;
-	@Autowired
+	@Autowired(required=true)
 	private PlanetDao planetDao;
 
 
