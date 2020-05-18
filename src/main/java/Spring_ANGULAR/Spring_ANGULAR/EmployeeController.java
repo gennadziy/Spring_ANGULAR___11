@@ -43,10 +43,10 @@ public class EmployeeController {
 		return ResponseEntity.ok().body(planets);
 	}
 
-	@PostMapping("/planets")
-	public Planets createPlanet(@Valid @RequestBody Planets planets) {
-		return planetDao.save(planets);
-	}
+//	@PostMapping("/planets")
+//	public Planets createPlanet(@Valid @RequestBody Planets planets) {
+//		return planetDao.save(planets);
+//	}
 
 //	@PutMapping("/planets/{id}")
 //	public ResponseEntity<Planets> updatePlanet( @PathVariable(value = "id") int id,
