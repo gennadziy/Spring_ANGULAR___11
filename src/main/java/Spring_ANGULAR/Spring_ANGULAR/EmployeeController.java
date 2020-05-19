@@ -5,10 +5,11 @@ import Spring_ANGULAR.Spring_ANGULAR.exception.ResourceNotFoundException;
 import Spring_ANGULAR.Spring_ANGULAR.repository.AutoDao;
 import Spring_ANGULAR.Spring_ANGULAR.repository.EmployeeRepository;
 import Spring_ANGULAR.Spring_ANGULAR.repository.ModeRepo;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "*")
+@Api(value = "Main REST Controller", tags = {"main-controller"})
 @RestController
 @RequestMapping("/springboot-crud-rest/api/v1")
 public class EmployeeController {
@@ -43,10 +45,10 @@ public class EmployeeController {
 		return ResponseEntity.ok().body(planets);
 	}
 
-//	@PostMapping("/planets")
-//	public Planets createPlanet(@Valid @RequestBody Planets planets) {
-//		return planetDao.save(planets);
-//	}
+	@PostMapping("/planets")
+	public Planets createPlanet(@Valid @RequestBody Planets planets) {
+		return planetDao.save(planets);
+	}
 
 //	@PutMapping("/planets/{id}")
 //	public ResponseEntity<Planets> updatePlanet( @PathVariable(value = "id") int id,
@@ -77,10 +79,12 @@ public class EmployeeController {
 //		return response;
 //	}
 
+	@ApiIgnore
 	@GetMapping("/autos")
 	public List<Autoss> getAllAutos() {
 		return autoDao.findAll();
 	}
+	@ApiIgnore
 	@GetMapping("/modes")
 	public List<Mode> getAllMode() {
 		return modeRepo.findAll();
@@ -129,3 +133,4 @@ public class EmployeeController {
 	}
 
 }
+
