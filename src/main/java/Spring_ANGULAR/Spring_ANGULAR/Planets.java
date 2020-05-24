@@ -3,10 +3,15 @@ package Spring_ANGULAR.Spring_ANGULAR;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Table
 @Entity
 @Data
+@XmlRootElement(name = "planets")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Planets {
 
     @Id

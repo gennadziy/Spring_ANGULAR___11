@@ -2,11 +2,10 @@ package Spring_ANGULAR.Spring_ANGULAR;
 
 
 import Spring_ANGULAR.Spring_ANGULAR.exception.ResourceNotFoundException;
-import Spring_ANGULAR.Spring_ANGULAR.repository.AutoDao;
-import Spring_ANGULAR.Spring_ANGULAR.repository.EmployeeRepository;
-import Spring_ANGULAR.Spring_ANGULAR.repository.ModeRepo;
+import Spring_ANGULAR.Spring_ANGULAR.repository.*;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -15,11 +14,15 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 @CrossOrigin(origins = "*")
 @Api(value = "Main REST Controller", tags = {"main-controller"})
 @RestController
 @RequestMapping("/springboot-crud-rest/api/v1")
+@Produces( {MediaType.APPLICATION_XML , MediaType.APPLICATION_JSON})
+
 public class EmployeeController {
 
 	@Autowired
@@ -29,15 +32,19 @@ public class EmployeeController {
 	@Autowired
 	private AutoDao autoDao;
 	@Autowired(required=true)
-
 	private PlanetDao planetDao;
+
+	@Autowired
+	private PlanetService planetService;
 
 
 	@GetMapping("/planets")
-	public List<Planets> getAllPlanets() {
-		return planetDao.findAll ();}
+	public List<Planets> getAllPlanets() throws InterruptedException {
+
+		return planetService.all ();}
 
 	@GetMapping("/planets/{id}")
+	@Cacheable("planet")
 	public ResponseEntity<Planets> getPlanetById( @PathVariable(value = "id") int id)
 			throws ResourceNotFoundException {
 		Planets planets = planetDao.findById(id)
@@ -89,8 +96,9 @@ public class EmployeeController {
 	public List<Mode> getAllMode() {
 		return modeRepo.findAll();
 	}
+
 	@GetMapping("/employees")
-	public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
 		return employeeRepository.findAll();
 	}
 

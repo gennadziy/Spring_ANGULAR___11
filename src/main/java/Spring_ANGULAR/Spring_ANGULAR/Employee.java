@@ -1,25 +1,21 @@
 package Spring_ANGULAR.Spring_ANGULAR;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "employees")
+@XmlRootElement(name = "employees")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
 
 	private long id;
 	private String firstName;
 	private String lastName;
 	private String emailId;
-	
-	public Employee() {
-		
-	}
-	
-	public Employee(String firstName, String lastName, String emailId) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-	}
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
