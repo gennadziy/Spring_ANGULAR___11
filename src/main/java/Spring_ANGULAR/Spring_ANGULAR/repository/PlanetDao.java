@@ -12,6 +12,5 @@ Date: 2020-05-13
 Time: 20:30
 */
 @Repository
-@Component(value = "planets")
 public interface PlanetDao extends JpaRepository<Planets, Integer> {
 }

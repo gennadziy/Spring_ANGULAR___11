@@ -12,7 +12,7 @@ import java.util.Date;
 @Slf4j
 @Component
 public class ScheduledTasks{
-    @Scheduled(fixedDelay = 1200000)
+    @Scheduled(fixedDelay = 1800000)
     public void getQuery() throws IOException {
 
 
