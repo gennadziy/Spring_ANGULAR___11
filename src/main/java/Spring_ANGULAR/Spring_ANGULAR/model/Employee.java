@@ -1,4 +1,4 @@
-package Spring_ANGULAR.Spring_ANGULAR;
+package Spring_ANGULAR.Spring_ANGULAR.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -2,20 +2,26 @@ package Spring_ANGULAR.Spring_ANGULAR;
 
 
 import Spring_ANGULAR.Spring_ANGULAR.exception.ResourceNotFoundException;
+import Spring_ANGULAR.Spring_ANGULAR.model.Autoss;
+import Spring_ANGULAR.Spring_ANGULAR.model.Employee;
+import Spring_ANGULAR.Spring_ANGULAR.model.Mode;
+import Spring_ANGULAR.Spring_ANGULAR.model.Planets;
 import Spring_ANGULAR.Spring_ANGULAR.repository.*;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 @CrossOrigin(origins = "*")
 @Api(value = "Main REST Controller", tags = {"main-controller"})
@@ -38,6 +44,13 @@ public class EmployeeController {
 	private PlanetService planetService;
 
 
+	@GetMapping("/empl")
+	public List<Employee> getAllSort() {
+
+		return employeeRepository.findAllEmpl ( JpaSort.unsafe("LENGTH(emailId)") );
+	}
+
+
 	@GetMapping("/planets")
 	public List<Planets> getAllPlanets() throws InterruptedException {
 
@@ -57,34 +70,34 @@ public class EmployeeController {
 		return planetDao.save(planets);
 	}
 
-//	@PutMapping("/planets/{id}")
-//	public ResponseEntity<Planets> updatePlanet( @PathVariable(value = "id") int id,
-//                                                 @Valid @RequestBody Planets planetDetails) throws ResourceNotFoundException {
-//		Planets planet = planetDao.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("Planet not found for this id :: " + id));
-//		planet.setId(planetDetails.getId());
-//		planet.setName_planet(planetDetails.getName_planet());
-//		planet.setPlanet_type (planetDetails.getPlanet_type ());
-//		planet.setUrl_img(planetDetails.getUrl_img());
-//		planet.setDistance (planetDetails.getDistance ());
-//		planet.setOne_Way_Light_Time (planetDetails.getOne_Way_Light_Time ());
-//		planet.setUrl_img(planetDetails.getUrl_img());
-//		planet.setLength_of_Year (planetDetails.getLength_of_Year ());
-//		planet.setDescr (planetDetails.getDescr ());
-//		final Planets updatedEmployee = planetDao.save(planet);
-//		return ResponseEntity.ok(updatedEmployee);
-//	}
-//
-//	@DeleteMapping("/planets/{id}")
-//	public Map<String, Boolean> deletePlanet(@PathVariable(value = "id") int id)
-//			throws ResourceNotFoundException {
-//		Planets planet = planetDao.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("PLanet not found for this id :: " + id));
-//		planetDao.delete(planet);
-//		Map<String, Boolean> response = new HashMap<>();
-//		response.put("deleted", Boolean.TRUE);
-//		return response;
-//	}
+	@PutMapping("/planets/{id}")
+	public ResponseEntity<Planets> updatePlanet( @PathVariable(value = "id") int id,
+                                                 @Valid @RequestBody Planets planetDetails) throws ResourceNotFoundException {
+		Planets planet = planetDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Planet not found for this id :: " + id));
+		planet.setId(planetDetails.getId());
+		planet.setName_planet(planetDetails.getName_planet());
+		planet.setPlanet_type (planetDetails.getPlanet_type ());
+		planet.setUrl_img(planetDetails.getUrl_img());
+		planet.setDistance (planetDetails.getDistance ());
+		planet.setOne_Way_Light_Time (planetDetails.getOne_Way_Light_Time ());
+		planet.setUrl_img(planetDetails.getUrl_img());
+		planet.setLength_of_Year (planetDetails.getLength_of_Year ());
+		planet.setDescr (planetDetails.getDescr ());
+		final Planets updatedEmployee = planetDao.save(planet);
+		return ResponseEntity.ok(updatedEmployee);
+	}
+
+	@DeleteMapping("/planets/{id}")
+	public Map<String, Boolean> deletePlanet(@PathVariable(value = "id") int id)
+			throws ResourceNotFoundException {
+		Planets planet = planetDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("PLanet not found for this id :: " + id));
+		planetDao.delete(planet);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
 
 	@ApiIgnore
 	@GetMapping("/autos")

@@ -1,6 +1,6 @@
 package Spring_ANGULAR.Spring_ANGULAR.repository;
 
-import Spring_ANGULAR.Spring_ANGULAR.Mode;
+import Spring_ANGULAR.Spring_ANGULAR.model.Mode;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

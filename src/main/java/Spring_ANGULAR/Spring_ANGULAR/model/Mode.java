@@ -1,4 +1,4 @@
-package Spring_ANGULAR.Spring_ANGULAR;
+package Spring_ANGULAR.Spring_ANGULAR.model;
 
 
 import lombok.Data;

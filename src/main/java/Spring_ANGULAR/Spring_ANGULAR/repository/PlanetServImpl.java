@@ -1,6 +1,6 @@
 package Spring_ANGULAR.Spring_ANGULAR.repository;
 
-import Spring_ANGULAR.Spring_ANGULAR.Planets;
+import Spring_ANGULAR.Spring_ANGULAR.model.Planets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

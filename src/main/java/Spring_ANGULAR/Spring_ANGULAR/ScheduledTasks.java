@@ -12,14 +12,15 @@ import java.util.Date;
 @Slf4j
 @Component
 public class ScheduledTasks{
+
     @Scheduled(fixedDelay = 1800000)
     public void getQuery() throws IOException {
 
 
             //get URL content
-           URL url = new URL("https://angular6.herokuapp.com/springboot-crud-rest/api/v1/planets");
+          URL url  = new URL("https://angular6.herokuapp.com/springboot-crud-rest/api/v1/planets");
           URL url1 = new URL("https://app-gennadziy.herokuapp.com/");
-        URLConnection conn = url.openConnection();
+        URLConnection conn  = url.openConnection();
         URLConnection conn1 = url1.openConnection();
         BufferedReader br = new BufferedReader(
                     new InputStreamReader (conn.getInputStream()));
@@ -43,4 +44,7 @@ public class ScheduledTasks{
             br.close();
             log.info("DONE!!!" + new Date ());
 
-}}
+}
+
+
+}

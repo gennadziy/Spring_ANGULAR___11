@@ -1,8 +1,7 @@
 package Spring_ANGULAR.Spring_ANGULAR.repository;
 
-import Spring_ANGULAR.Spring_ANGULAR.Planets;
+import Spring_ANGULAR.Spring_ANGULAR.model.Planets;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /*
