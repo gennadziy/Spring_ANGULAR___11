@@ -10,7 +10,9 @@ import Spring_ANGULAR.Spring_ANGULAR.repository.*;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +25,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @Api(value = "Main REST Controller", tags = {"main-controller"})
 @RestController
 @RequestMapping("/springboot-crud-rest/api/v1")
 @Produces( {MediaType.APPLICATION_XML , MediaType.APPLICATION_JSON})
 
-public class EmployeeController {
+public class EmployeeController  {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -39,7 +41,8 @@ public class EmployeeController {
 	private AutoDao autoDao;
 	@Autowired(required=true)
 	private PlanetDao planetDao;
-
+	@Autowired
+	private EmployeeService employeeService;
 	@Autowired
 	private PlanetService planetService;
 
@@ -48,6 +51,12 @@ public class EmployeeController {
 	public List<Employee> getAllSort() {
 
 		return employeeRepository.findAllEmpl ( JpaSort.unsafe("LENGTH(emailId)") );
+	}
+
+	@GetMapping("/empl1/{pageNo}/{pageSize}")
+	public List<Employee> findPaginated(@PathVariable int pageNo,
+										@PathVariable int pageSize) {
+		return employeeService.findPaginated	(pageNo, pageSize);
 	}
 
 
