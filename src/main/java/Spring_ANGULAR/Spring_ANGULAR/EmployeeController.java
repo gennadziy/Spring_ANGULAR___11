@@ -10,9 +10,6 @@ import Spring_ANGULAR.Spring_ANGULAR.repository.*;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +50,7 @@ public class EmployeeController  {
 		return employeeRepository.findAllEmpl ( JpaSort.unsafe("LENGTH(emailId)") );
 	}
 
-	@GetMapping("/empl1/{pageNo}/{pageSize}")
+	@GetMapping("/empl1/page={pageNo}&size={pageSize}")
 	public List<Employee> findPaginated(@PathVariable int pageNo,
 										@PathVariable int pageSize) {
 		return employeeService.findPaginated(pageNo, pageSize);
