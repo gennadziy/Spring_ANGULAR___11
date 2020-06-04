@@ -16,7 +16,7 @@ public class PlanetServImpl implements PlanetService {
     @Override
     @Cacheable("planets")
     public List<Planets> all () throws InterruptedException {
-        Thread.sleep ( 15000 );
+        Thread.sleep ( 3000 );
         return planetDao.findAll ();
     }
 }
