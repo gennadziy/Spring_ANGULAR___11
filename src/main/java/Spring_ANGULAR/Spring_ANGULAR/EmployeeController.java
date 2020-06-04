@@ -56,7 +56,7 @@ public class EmployeeController  {
 	@GetMapping("/empl1/{pageNo}/{pageSize}")
 	public List<Employee> findPaginated(@PathVariable int pageNo,
 										@PathVariable int pageSize) {
-		return employeeService.findPaginated	(pageNo, pageSize);
+		return employeeService.findPaginated(pageNo, pageSize);
 	}
 
 
