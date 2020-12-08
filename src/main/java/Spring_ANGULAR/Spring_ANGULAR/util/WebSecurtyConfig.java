@@ -1,4 +1,4 @@
-package Spring_ANGULAR.Spring_ANGULAR;
+package Spring_ANGULAR.Spring_ANGULAR.util;
 
 
 
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class WebSecurtyConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure ( HttpSecurity http ) throws Exception {
@@ -20,8 +20,8 @@ public class WebSecurtyConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/**","/login**", "/error**").permitAll()
                 .anyRequest().authenticated()
                 .and().logout().logoutSuccessUrl("/").permitAll()
-                .and();
-//                .csrf ( ).disable ( );
+                .and()
+                .csrf ( ).disable ( );
     }
 
     @Override

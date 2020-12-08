@@ -20,8 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findPaginated ( int pageNo, int pageSize ){
         Pageable paging = PageRequest.of(pageNo, pageSize);
         Page<Employee> pagedResult = employeeRepository.findAll(paging);
-
         return pagedResult.toList();
-    };
+    }
 
 }

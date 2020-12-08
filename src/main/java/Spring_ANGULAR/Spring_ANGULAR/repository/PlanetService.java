@@ -13,4 +13,8 @@ Time: 20:30
 public interface PlanetService {
 
     List<Planets> all() throws InterruptedException;
+    List<Planets> allSort() throws InterruptedException;
+
+
+
 }

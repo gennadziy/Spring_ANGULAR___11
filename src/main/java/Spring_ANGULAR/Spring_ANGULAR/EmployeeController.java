@@ -46,8 +46,16 @@ public class EmployeeController  {
 
 	@GetMapping("/empl")
 	public List<Employee> getAllSort() {
-
 		return employeeRepository.findAllEmpl ( JpaSort.unsafe("LENGTH(emailId)") );
+	}
+
+	@GetMapping("/test")
+		public List <Planets> sort(){
+			return planetDao.findSortPlanet ( JpaSort.unsafe ("LENGTH(name_planet)") );
+		}
+	@GetMapping("/test1")
+				public List <Planets> sort1() throws InterruptedException {
+			return planetService.allSort ();
 	}
 
 	@GetMapping("/empl1/page={pageNo}&size={pageSize}")
@@ -56,10 +64,8 @@ public class EmployeeController  {
 		return employeeService.findPaginated(pageNo, pageSize);
 	}
 
-
 	@GetMapping("/planets")
 	public List<Planets> getAllPlanets() throws InterruptedException {
-
 		return planetService.all ();}
 
 	@GetMapping("/planets/{id}")
@@ -67,7 +73,7 @@ public class EmployeeController  {
 	public ResponseEntity<Planets> getPlanetById( @PathVariable(value = "id") int id)
 			throws ResourceNotFoundException {
 		Planets planets = planetDao.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Planet not found for this id :: " + id));
+				.orElseThrow(()  -> new ResourceNotFoundException("Planet not found for this id :: " + id));
 		return ResponseEntity.ok().body(planets);
 	}
 
@@ -120,6 +126,7 @@ public class EmployeeController  {
     public List<Employee> getAllEmployees() {
 		return employeeRepository.findAll();
 	}
+
 
 	@GetMapping("/employees/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
