@@ -1,0 +1,15 @@
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (1, 65.00, 'USD', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (2, 75.00, 'EUR', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (3, 25.00, 'AUD', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (4, 75.00, 'BYR', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (5, 25.00, 'RUR', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (6, 65.00, 'UAH', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (7, 75.00, 'NOK', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (8, 25.00, 'PLN', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (9, 65.00, 'GBP', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (10, 75.00, 'JPY', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (11, 25.00, 'RUB', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (12, 65.00, 'KZT', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (13, 75.00, 'BTC', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (14, 25.00, 'FRF', 0, 'INR');
+INSERT INTO test.exchange_value (id, conversion_multiple, currency_from, port, currency_to) VALUES (15, 65.00, 'ILS', 0, 'INR');
